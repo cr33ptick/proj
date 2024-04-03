@@ -1,16 +1,15 @@
-import { ArrowRight, CirclePlus } from "lucide-react";
 import Link from "next/link";
 import { buttonVariants } from "./ui/button";
-import {
-  LoginLink,
-  RegisterLink,
-  getKindeServerSession,
-} from "@kinde-oss/kinde-auth-nextjs/server";
-import UserAccountNav from "./UserAccountNav";
 
-const Navbar = async () => {
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
+import UserAccountNav from "./UserAccountNav";
+import { getUserServer } from "@/lib/auth";
+
+interface Props {
+  userId: string;
+}
+
+const Navbar: React.FC<Props> = async ({ userId }) => {
+  const user = await getUserServer(userId);
   return (
     <nav className="fixed h-14 inset-x-0 top-0 z-30 w-full border-b border-gray-200 bg-white/75 backdrop-blur-lg transition-all">
       <div className="flex h-14 items-center pl-4 justify-between border-b border-zinc-200">
@@ -44,7 +43,7 @@ const Navbar = async () => {
               <UserAccountNav
                 name={user.username}
                 email={user.email ?? ""}
-                imageUrl={user.picture ?? ""}
+                imageUrl={""}
               />
             </>
           )}
