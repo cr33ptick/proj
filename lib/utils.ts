@@ -8,7 +8,6 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function getUser(token: string) {
-  if (!token) return null;
   const decoded: TokenData = jwtDecode(token);
   return decoded;
 }

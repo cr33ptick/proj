@@ -1,39 +1,14 @@
+"use client";
+import useLocalStorage from "@/hooks/useLocalStorage";
+import { getUser } from "@/lib/utils";
 import { redirect } from "next/navigation";
 
-import db from "@/lib/db";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-
-export default async function Page() {
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
-  const { isSubscribed } = await getUserPlan();
-
+export default function Page() {
+  const [token, _] = useLocalStorage<string>("token", "");
+  const user = getUser(token);
   if (!user) {
-    redirect("/sign-in");
-  }
-  const dbUser = await db.user.findFirst({
-    where: {
-      userId: user.id,
-    },
-  });
-
-  if (!dbUser) {
-    redirect("/auth-callback");
+    redirect("/login");
   }
 
-  if (!isSubscribed) {
-    redirect("/pricing");
-  }
-
-  const store = await db.store.findFirst({
-    where: {
-      userId: user?.id,
-    },
-  });
-
-  if (store) {
-    redirect(`/dashboard/${store.id}`);
-  }
-
-  redirect("/create");
+  redirect(`/${user.userId}/${user.role.toLowerCase()}`);
 }

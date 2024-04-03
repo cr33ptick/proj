@@ -14,7 +14,7 @@ export interface Register {
 export interface TokenData {
   userId: string;
   username: string;
-  role: boolean;
+  role: string;
 }
 
 export interface Verify {
