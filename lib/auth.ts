@@ -1,4 +1,4 @@
-export async function auth() {
+export async function getUserServer(id: string) {
   //   const { getUser } = getKindeServerSession();
   //   const user = await getUser();
   //   if (!user || !user.id) {

@@ -7,10 +7,8 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function getUser() {
-  const [lsValue, setLsValue] = useLocalStorage("user", {});
-  const token = lsValue.token;
-
-  const decoded = jwt_decode(token);
-
-  const isAdmin = decoded.role;
+  // const [lsValue, setLsValue] = useLocalStorage("user", {});
+  // const token = lsValue.token;
+  // const decoded = jwt_decode(token);
+  // const isAdmin = decoded.role;
 }
