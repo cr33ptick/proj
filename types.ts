@@ -11,3 +11,13 @@ export interface Register {
   regNo?: string;
   specilize?: string;
 }
+export interface TokenData {
+  userId: string;
+  username: string;
+  role: boolean;
+}
+
+export interface Verify {
+  verified: boolean;
+  id: string;
+}

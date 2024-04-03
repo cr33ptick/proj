@@ -12,6 +12,7 @@ import { Avatar, AvatarFallback } from "./ui/avatar";
 import Image from "next/image";
 import { Icons } from "./Icons";
 import { LogOut } from "lucide-react";
+import useLocalStorage from "@/hooks/useLocalStorage";
 
 interface UserAccountNavProps {
   email: string | undefined;
@@ -20,7 +21,11 @@ interface UserAccountNavProps {
 }
 
 const UserAccountNav = ({ email, imageUrl, name }: UserAccountNavProps) => {
-  function logout() {}
+  const [_, setToken] = useLocalStorage<string>("token", "");
+  function logout() {
+    setToken("");
+    window.location.reload();
+  }
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="overflow-visible">

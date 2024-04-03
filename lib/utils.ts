@@ -1,14 +1,16 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import jwt_decode from "jwt-decode";
+import jwtDecode from "jwt-decode";
+import useLocalStorage from "@/hooks/useLocalStorage";
+import { TokenData } from "@/types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
 export function getUser() {
-  // const [lsValue, setLsValue] = useLocalStorage("user", {});
-  // const token = lsValue.token;
-  // const decoded = jwt_decode(token);
-  // const isAdmin = decoded.role;
+  const [token, _] = useLocalStorage("token", "");
+  if (!token) return null;
+  const decoded: TokenData = jwtDecode(token);
+  return decoded;
 }

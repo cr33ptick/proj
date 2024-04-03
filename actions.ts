@@ -2,7 +2,7 @@
 
 import { Role } from "@prisma/client";
 import db from "./lib/db";
-import { Login, Register } from "./types";
+import { Login, Register, Verify } from "./types";
 import { createJWT } from "./lib/auth";
 
 export const register = async (data: Register) => {
@@ -27,4 +27,15 @@ export const login = async (data: Login) => {
   if (!user) return null;
   const token = createJWT(user.id, user.username, user.role);
   return { token, user };
+};
+
+export const verify = async (data: Verify) => {
+  const user = db.user.update({
+    where: {
+      id: data.id,
+    },
+    data: {
+      verified: data.verified,
+    },
+  });
 };

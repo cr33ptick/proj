@@ -1,10 +1,9 @@
 "use client";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { AvatarFallback } from "@/components/ui/avatar";
 import { Icons } from "@/components/Icons";
-import Link from "next/link";
+import VerifyBtn from "@/components/Verify-btn";
 import { Role } from "@prisma/client";
-
 interface Card {
   data: {
     id: string;
@@ -44,18 +43,11 @@ export const DocterCard: React.FC<Card> = ({ data }) => {
             <p className="font-bold text-md text-black">RegNo: </p>
             <p className="font-bold text-md text-black">{data.regNo}</p>
           </div>
-          <p className="font-bold text-md text-black">
-            {data.verified ? "Verified" : "Not Verified"}{" "}
-          </p>
+          <div className="flex gap-4">
+            <p className="font-bold text-md text-black">Verify: </p>
+            <VerifyBtn item={{ id: data.id, verified: data.verified }} />
+          </div>
         </div>
-        <Link
-          href={`https://wa.me/${data.phoneNo}`}
-          className={buttonVariants({
-            className: "text-md",
-          })}
-        >
-          Book appointement
-        </Link>
       </div>
     </div>
   );

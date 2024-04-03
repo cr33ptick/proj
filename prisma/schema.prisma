@@ -8,14 +8,23 @@ datasource db {
 }
 
 model User {
-  id        String @id @unique @default(uuid())
-  email     String @unique
+  id        String    @id @unique @default(uuid())
+  email     String    @unique
   username  String
   phoneNo   String
   password  String
   role      Role
-  regNo     String @default("")
-  specilize String @default("")
+  verified  Boolean   @default(false)
+  regNo     String    @default("")
+  specilize String    @default("")
+  booking   Booking[]
+}
+
+model Booking {
+  id       String  @id @unique @default(uuid())
+  doctorId String  @default("")
+  User     User?   @relation(fields: [userId], references: [id])
+  userId   String?
 }
 
 enum Role {
