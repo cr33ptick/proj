@@ -13,6 +13,7 @@ import Image from "next/image";
 import { Icons } from "./Icons";
 import { LogOut } from "lucide-react";
 import useLocalStorage from "@/hooks/useLocalStorage";
+import { useRouter } from "next/navigation";
 
 interface UserAccountNavProps {
   email: string | undefined;
@@ -22,9 +23,11 @@ interface UserAccountNavProps {
 
 const UserAccountNav = ({ email, imageUrl, name }: UserAccountNavProps) => {
   const [_, setToken] = useLocalStorage<string>("token", "");
+  const router = useRouter();
+
   function logout() {
     setToken("");
-    window.location.reload();
+    router.push("/");
   }
   return (
     <DropdownMenu>

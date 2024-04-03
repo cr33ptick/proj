@@ -8,6 +8,10 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function getUser(token: string) {
-  const decoded: TokenData = jwtDecode(token);
-  return decoded;
+  try {
+    const decoded: TokenData = jwtDecode(token);
+    return decoded;
+  } catch (error) {
+    return null;
+  }
 }
