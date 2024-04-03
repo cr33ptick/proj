@@ -17,9 +17,10 @@ interface Card {
     regNo: string;
     specilize: string;
   };
+  userId: string;
 }
 
-export const DocterCard: React.FC<Card> = ({ data }) => {
+export const DocterCard: React.FC<Card> = ({ data, userId }) => {
   return (
     <div className="bg-white group cursor-pointer rounded-xl border p-4 space-y-4 ">
       <div className="flex flex-col gap-6 ">
@@ -47,7 +48,7 @@ export const DocterCard: React.FC<Card> = ({ data }) => {
           {data.verified ? "Verified" : "Not Verified"}{" "}
         </p>
         <Link
-          href={`https://wa.me/${data.phoneNo}`}
+          href={`/${userId}/book?doctorId=${data.id}`}
           className={buttonVariants({
             className: "text-md",
           })}

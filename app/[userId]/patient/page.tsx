@@ -2,7 +2,11 @@ import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { DocterCard } from "@/components/doctor/card";
 import db from "@/lib/db";
 
-const Page = async () => {
+interface Props {
+  params: { userId: string };
+}
+
+const Page = async ({ params }: Props) => {
   const doctors = await db.user.findMany({
     where: {
       role: "DOCTOR",
@@ -18,7 +22,7 @@ const Page = async () => {
           <div className="mt-6 lg:col-span-4 lg:mt-0">
             <div className="grid grid-cols-1  md:grid-cols-2 gap-4">
               {doctors.map((item) => (
-                <DocterCard key={item.id} data={item} />
+                <DocterCard key={item.id} data={item} userId={params.userId} />
               ))}
             </div>
           </div>

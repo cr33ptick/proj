@@ -35,7 +35,7 @@ export const login = async (data: Login) => {
 };
 
 export const verify = async (data: Verify) => {
-  const user = db.user.update({
+  await db.user.update({
     where: {
       id: data.id,
     },
