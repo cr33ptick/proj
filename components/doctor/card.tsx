@@ -33,19 +33,19 @@ export const DocterCard: React.FC<Card> = ({ data }) => {
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-4 ">
+        <div className="flex justify-between gap-4 ">
           <div className="flex gap-4">
-            <p className="font-bold text-md text-black">Specialize: </p>
-            <p className="font-bold text-md text-black">{data.specilize}</p>
+            <p className="font-bold text-md ">Specialize: </p>
+            <p className="font-bold text-md text-primary">{data.specilize}</p>
           </div>
           <div className="flex gap-4">
-            <p className="font-bold text-md text-black">RegNo: </p>
-            <p className="font-bold text-md text-black">{data.regNo}</p>
+            <p className="font-bold text-md ">RegNo: </p>
+            <p className="font-bold text-md text-primary">{data.regNo}</p>
           </div>
-          <p className="font-bold text-md text-black">
-            {data.verified ? "Verified" : "Not Verified"}{" "}
-          </p>
         </div>
+        <p className="font-bold text-md text-primary">
+          {data.verified ? "Verified" : "Not Verified"}{" "}
+        </p>
         <Link
           href={`https://wa.me/${data.phoneNo}`}
           className={buttonVariants({
