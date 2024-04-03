@@ -25,9 +25,7 @@ export const DocterCard: React.FC<Card> = ({ data }) => {
       <div className="flex flex-col gap-6 ">
         <div className="flex gap-4 justify-start items-center">
           <Button className="rounded-full h-12 w-12 aspect-square bg-slate-400">
-            <AvatarFallback>
-              <Icons.user className="h-6 w-6 text-zinc-900" />
-            </AvatarFallback>
+            <Icons.user className="h-6 w-6 text-zinc-900" />
           </Button>
           <div className="flex items-center justify-start gap-2 p-2">
             <div className="flex flex-col space-y-0.5 leading-none">

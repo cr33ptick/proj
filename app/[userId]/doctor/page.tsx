@@ -1,8 +1,19 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { PatientCard } from "@/components/patient/card";
+import db from "@/lib/db";
 
-const Page = () => {
-  const patient: any = [];
+interface Props {
+  params: { userId: string };
+}
+const Page = async ({ params }: Props) => {
+  const patients = await db.booking.findMany({
+    where: {
+      doctorId: params.userId,
+    },
+    include: {
+      User: true,
+    },
+  });
   return (
     <MaxWidthWrapper>
       <div className="px-4 sm:px-6 lg:px-8 pb-8">
@@ -11,11 +22,11 @@ const Page = () => {
         </div>
         <div className="lg:grid lg:grid-cols-4 lg:gap-x-8">
           <div className="mt-6 lg:col-span-4 lg:mt-0">
-            {/* <div className="grid grid-cols-1  md:grid-cols-2 gap-4">
-              {patient.map((item: any) => (
+            <div className="grid grid-cols-1  md:grid-cols-2 gap-4">
+              {patients.map((item) => (
                 <PatientCard key={item.id} data={item} />
               ))}
-            </div> */}
+            </div>
           </div>
         </div>
       </div>

@@ -59,29 +59,30 @@ export function Form() {
       [target.id]: target.value,
     }));
   }
+  const { email2, password2, phoneNo2, regNo, specilize, username2 } =
+    formData2;
 
   async function handleSubmit2(e: FormEvent) {
     e.preventDefault();
-    console.log(formData2);
     const data = {
-      ...formData2,
       phoneNo: phoneNo2,
       username: username2,
       email: email2,
       password: password2,
+      regNo,
+      specilize,
     };
+    console.log(data);
     runAction(data).then((res) => {
       console.log(res);
     });
   }
   const { email, password, phoneNo, username } = formData;
-  const { email2, password2, phoneNo2, regNo, specilize, username2 } =
-    formData2;
   return (
     <Tabs defaultValue="patient" className="w-[400px]">
       <TabsList className="grid w-full grid-cols-2">
         <TabsTrigger value="patient">Patient</TabsTrigger>
-        <TabsTrigger value="docter">Docter</TabsTrigger>
+        <TabsTrigger value="doctor">Doctor</TabsTrigger>
       </TabsList>
       <TabsContent value="patient">
         <form onSubmit={handleSubmit}>
@@ -135,7 +136,7 @@ export function Form() {
           </Card>
         </form>
       </TabsContent>
-      <TabsContent value="docter">
+      <TabsContent value="doctor">
         <form onSubmit={handleSubmit2}>
           <Card>
             <CardHeader>
