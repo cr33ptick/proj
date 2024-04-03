@@ -182,9 +182,9 @@ export function Form() {
                 />
               </div>
               <div className="space-y-1">
-                <Label htmlFor="specialize">Specilize</Label>
+                <Label htmlFor="specilize">Specilize</Label>
                 <Input
-                  id="specialize"
+                  id="specilize"
                   value={specilize}
                   onChange={handleInputChange2}
                   placeholder="specialize"

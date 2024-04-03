@@ -44,7 +44,7 @@ export const Form = () => {
     <form onSubmit={handleSubmit}>
       <Card>
         <CardHeader>
-          <CardTitle>Patient</CardTitle>
+          <CardTitle></CardTitle>
         </CardHeader>
         <CardContent className="space-y-2">
           <div className="space-y-1">
