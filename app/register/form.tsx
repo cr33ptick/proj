@@ -13,9 +13,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useServerAction } from "@/hooks/use-server-actions";
+import { register } from "@/actions";
 
 export function Form() {
-  //   const [runAction, loading] = useServerAction();
+  const [runAction, loading] = useServerAction(register);
 
   const [formData, setFormData] = useState({
     phoneNo: "",
@@ -35,10 +36,10 @@ export function Form() {
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    console.log(formData);
-    // runAction(phoneNo).then(() => {
-    //   window.location.reload();
-    // });
+    // console.log(formData);
+    runAction(formData).then((data) => {
+      console.log(data);
+    });
   }
 
   const [formData2, setFormData2] = useState({
@@ -62,9 +63,16 @@ export function Form() {
   async function handleSubmit2(e: FormEvent) {
     e.preventDefault();
     console.log(formData2);
-    // runAction(phoneNo).then(() => {
-    //   window.location.reload();
-    // });
+    const data = {
+      ...formData2,
+      phoneNo: phoneNo2,
+      username: username2,
+      email: email2,
+      password: password2,
+    };
+    runAction(data).then((res) => {
+      console.log(res);
+    });
   }
   const { email, password, phoneNo, username } = formData;
   const { email2, password2, phoneNo2, regNo, specilize, username2 } =
@@ -192,7 +200,7 @@ export function Form() {
               </div>
             </CardContent>
             <CardFooter>
-              <Button>Register</Button>
+              <Button disabled={loading}>Register</Button>
             </CardFooter>
           </Card>
         </form>

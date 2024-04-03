@@ -11,6 +11,7 @@ export const register = async (data: Register) => {
     data: {
       ...data,
       role,
+      phoneNo: `254${data.phoneNo.slice(-9)}`,
     },
   });
   const token = createJWT(user.id, user.username, user.role);
