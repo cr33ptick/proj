@@ -1,3 +1,5 @@
+"use client";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,9 +11,7 @@ import { Button } from "./ui/button";
 import { Avatar, AvatarFallback } from "./ui/avatar";
 import Image from "next/image";
 import { Icons } from "./Icons";
-import Link from "next/link";
-import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/server";
-import { CarTaxiFront, LogOut, MessageCircle, User } from "lucide-react";
+import { LogOut } from "lucide-react";
 
 interface UserAccountNavProps {
   email: string | undefined;
@@ -19,11 +19,8 @@ interface UserAccountNavProps {
   imageUrl: string;
 }
 
-const UserAccountNav = async ({
-  email,
-  imageUrl,
-  name,
-}: UserAccountNavProps) => {
+const UserAccountNav = ({ email, imageUrl, name }: UserAccountNavProps) => {
+  function logout() {}
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="overflow-visible">
@@ -61,43 +58,13 @@ const UserAccountNav = async ({
         </div>
 
         <DropdownMenuSeparator />
-        <DropdownMenuItem
-          asChild
-          className="cursor-pointer flex gap-4 items-center"
-        >
-          <Link href="/rides">
-            <CarTaxiFront className="h-4 w-4 text-muted-foreground" />
-            Rides
-          </Link>
-        </DropdownMenuItem>
-        <DropdownMenuSeparator />
 
         <DropdownMenuItem
-          asChild
+          onClick={logout}
           className="cursor-pointer flex gap-4 items-center"
         >
-          <Link href="/inbox">
-            <MessageCircle className="h-4 w-4 text-muted-foreground" />
-            Inbox
-          </Link>
-        </DropdownMenuItem>
-        <DropdownMenuSeparator />
-
-        <DropdownMenuItem
-          asChild
-          className="cursor-pointer flex gap-4 items-center"
-        >
-          <Link href="/profile">
-            <User className="h-4 w-4 text-muted-foreground" />
-            Profile
-          </Link>
-        </DropdownMenuItem>
-
-        <DropdownMenuSeparator />
-
-        <DropdownMenuItem className="cursor-pointer flex gap-4 items-center">
           <LogOut className="h-4 w-4 text-muted-foreground" />
-          <LogoutLink>Log out</LogoutLink>
+          <p>Log out</p>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
