@@ -21,3 +21,9 @@ export interface Verify {
   verified: boolean;
   id: string;
 }
+
+export interface Book {
+  userId: string;
+  doctorId: string;
+  issue: string;
+}

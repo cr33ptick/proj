@@ -1,6 +1,6 @@
 "use client";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar } from "@/components/ui/avatar";
 import { Icons } from "@/components/Icons";
 import Link from "next/link";
 import { Role } from "@prisma/client";
@@ -31,10 +31,7 @@ export const PatientCard: React.FC<Card> = ({ data }) => {
       <div className="flex flex-col gap-6 ">
         <div className="flex gap-4 justify-start items-center">
           <Button className="rounded-full h-12 w-12 aspect-square bg-slate-400">
-            <AvatarFallback>
-              <span className="sr-only">{data.User?.username}</span>
-              <Icons.user className="h-6 w-6 text-zinc-900" />
-            </AvatarFallback>
+            <Icons.user className="h-6 w-6 text-zinc-900" />
           </Button>
           <div className="flex items-center justify-start gap-2 p-2">
             <div className="flex flex-col space-y-0.5 leading-none">
@@ -50,19 +47,20 @@ export const PatientCard: React.FC<Card> = ({ data }) => {
             <p className="font-bold text-md text-black">{data.issue}</p>
           </div>
         </div>
-        <div className="flex gap-4">
+        <div className="flex gap-4 w-full">
           <Link
             href={`https://wa.me/${data.User?.phoneNo}`}
             className={buttonVariants({
-              className: "text-md",
+              className: "text-md w-full",
             })}
           >
             Chat
           </Link>
           <Link
-            href={`https://wa.me/${data.User?.phoneNo}`}
+            href={`tel:${data.User?.phoneNo}`}
             className={buttonVariants({
-              className: "text-md",
+              className: "text-md w-full text-primary",
+              variant: "outline",
             })}
           >
             Call

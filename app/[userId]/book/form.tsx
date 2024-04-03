@@ -5,6 +5,8 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useServerAction } from "@/hooks/use-server-actions";
+import { book } from "@/actions";
 
 type Props = {
   data: {
@@ -17,8 +19,8 @@ export const Form: React.FC<Props> = ({ data }) => {
   const [formData, setFormData] = useState({
     issue: "",
   });
-  const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const [runAction, loading] = useServerAction(book);
 
   const { issue } = formData;
   function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
@@ -32,12 +34,15 @@ export const Form: React.FC<Props> = ({ data }) => {
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     console.log(issue);
+    runAction({ ...data, issue }).then(() => {
+      router.push("/");
+    });
     // try {
     //   setLoading(true);
 
     //   const response = await axios.post("/api/pay", {
-    //     ...data,
-    //     issue,
+    // ...data,
+    // issue,
     //   });
     //   if (response.data.error) return toast.error(response.data.error);
     //   toast.success(response.data.msg);

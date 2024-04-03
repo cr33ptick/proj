@@ -2,7 +2,7 @@
 
 import { Role } from "@prisma/client";
 import db from "./lib/db";
-import { Login, Register, Verify } from "./types";
+import { Book, Login, Register, Verify } from "./types";
 import { createJWT } from "./lib/auth";
 
 export const register = async (data: Register) => {
@@ -22,6 +22,7 @@ export const register = async (data: Register) => {
     return null;
   }
 };
+
 export const login = async (data: Login) => {
   const user = await db.user.findUnique({
     where: {
@@ -43,4 +44,14 @@ export const verify = async (data: Verify) => {
       verified: data.verified,
     },
   });
+};
+
+export const book = async (data: Book) => {
+  const booking = await db.booking.create({
+    data: {
+      ...data,
+    },
+  });
+
+  return booking;
 };
