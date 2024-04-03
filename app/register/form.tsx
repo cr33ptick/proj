@@ -14,9 +14,14 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useServerAction } from "@/hooks/use-server-actions";
 import { register } from "@/actions";
+import useLocalStorage from "@/hooks/useLocalStorage";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export function Form() {
   const [runAction, loading] = useServerAction(register);
+  const [token, setToken] = useLocalStorage<string>("token", "");
+  const router = useRouter();
 
   const [formData, setFormData] = useState({
     phoneNo: "",
@@ -37,8 +42,12 @@ export function Form() {
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     // console.log(formData);
-    runAction(formData).then((data) => {
-      console.log(data);
+    runAction(formData).then((res) => {
+      console.log(res);
+      if (!res) return toast.error("Email already exists");
+
+      setToken(res.token);
+      router.push(`${res.user.id}/patient`);
     });
   }
 
@@ -75,6 +84,10 @@ export function Form() {
     console.log(data);
     runAction(data).then((res) => {
       console.log(res);
+      if (!res) return toast.error("Email already exists");
+
+      setToken(res.token);
+      router.push(`${res.user.id}/doctor`);
     });
   }
   const { email, password, phoneNo, username } = formData;

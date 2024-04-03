@@ -7,15 +7,20 @@ import { createJWT } from "./lib/auth";
 
 export const register = async (data: Register) => {
   const role: Role = data.regNo ? "DOCTOR" : "PATIENT";
-  const user = await db.user.create({
-    data: {
-      ...data,
-      role,
-      phoneNo: `254${data.phoneNo.slice(-9)}`,
-    },
-  });
-  const token = createJWT(user.id, user.username, user.role);
-  return { token, user };
+  try {
+    const user = await db.user.create({
+      data: {
+        ...data,
+        role,
+        phoneNo: `254${data.phoneNo.slice(-9)}`,
+      },
+    });
+    const token = createJWT(user.id, user.username, user.role);
+    return { token, user };
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
 };
 export const login = async (data: Login) => {
   const user = await db.user.findUnique({
