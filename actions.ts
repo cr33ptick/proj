@@ -61,17 +61,18 @@ export const available = async (data: Verify) => {
 export const book = async (data: Book) => {
   const phone = `254${data.phoneNo.slice(-9)}`;
   try {
-    const res = await makePayment(phone, "2000", "https://mydomain.com/path");
+    const [res, _] = await Promise.all([
+      makePayment(phone, "2000", "https://mydomain.com/path"),
+      await db.booking.create({
+        data: {
+          doctorId: data.doctorId,
+          issue: data.issue,
+          userId: data.userId,
+        },
+      }),
+    ]);
 
     console.log(res);
-
-    const booking = await db.booking.create({
-      data: {
-        doctorId: data.doctorId,
-        issue: data.issue,
-        userId: data.userId,
-      },
-    });
 
     return { msg: res.CustomerMessage };
   } catch (error) {
