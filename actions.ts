@@ -73,7 +73,7 @@ export const book = async (data: Book) => {
       },
     });
 
-    return { msg: res.CustomerMessage, booking };
+    return { msg: res.CustomerMessage };
   } catch (error) {
     console.log("checkout: ", error);
 

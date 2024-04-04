@@ -39,7 +39,9 @@ export const Form: React.FC<Props> = ({ data }) => {
       console.log(res);
       if (!res) return toast.error("Something went wrong try again later");
       toast.success(res.msg);
-      // router.push("/");
+      setTimeout(() => {
+        router.push("/");
+      }, 3000);
     });
     // try {
     //   setLoading(true);
