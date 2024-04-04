@@ -26,4 +26,53 @@ export interface Book {
   userId: string;
   doctorId: string;
   issue: string;
+  phoneNo: string;
+}
+export interface MpesaRequestBody {
+  BusinessShortCode: string;
+  Password: string;
+  Timestamp: string;
+  TransactionType: string;
+  Amount: string;
+  PartyA: string;
+  PartyB: string;
+  PhoneNumber: string;
+  CallBackURL: string;
+  AccountReference: string;
+  TransactionDesc: string;
+}
+export interface Body {
+  stkCallback: StkCallback;
+}
+
+export interface StkCallback {
+  MerchantRequestID: string;
+  CheckoutRequestID: string;
+  ResultCode: number;
+  ResultDesc: string;
+  CallbackMetadata: CallbackMetadata;
+}
+
+export interface CallbackMetadata {
+  Item: Item[];
+}
+
+export interface Item {
+  Name: string;
+  Value: any;
+}
+export interface MpesaCallbackResponse {
+  Body: Body;
+}
+export interface MpesaAuthResponse {
+  access_token: string;
+  expires_in: string;
+}
+
+export interface PayResponse {
+  MerchantRequestID: string;
+  CheckoutRequestID: string;
+  ResponseCode: string;
+  ResponseDescription: string;
+  CustomerMessage: string;
 }
