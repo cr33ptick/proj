@@ -195,7 +195,7 @@ export function Form() {
                 />
               </div>
               <div className="space-y-1">
-                <Label htmlFor="regNo">Registration Number</Label>
+                <Label htmlFor="regNo">License Number</Label>
                 <Input
                   id="regNo"
                   value={regNo}

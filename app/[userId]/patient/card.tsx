@@ -41,7 +41,7 @@ export const MybookingCard: React.FC<Card> = ({ data, userId }) => {
             <p className="font-bold text-md text-primary">{data.specilize}</p>
           </div>
           <div className="flex gap-4">
-            <p className="font-bold text-md ">RegNo: </p>
+            <p className="font-bold text-md ">License Number: </p>
             <p className="font-bold text-md text-primary">{data.regNo}</p>
           </div>
         </div>

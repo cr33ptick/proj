@@ -38,7 +38,7 @@ export const DocterCard: React.FC<Card> = ({ data }) => {
             <p className="font-bold text-md ">{data.specilize}</p>
           </div>
           <div className="flex gap-4">
-            <p className="font-bold text-md text-primary">RegNo: </p>
+            <p className="font-bold text-md text-primary">License Number: </p>
             <p className="font-bold text-md ">{data.regNo}</p>
           </div>
         </div>
