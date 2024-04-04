@@ -15,6 +15,7 @@ model User {
   password  String
   role      Role
   verified  Boolean   @default(false)
+  available Boolean   @default(true)
   regNo     String    @default("")
   specilize String    @default("")
   booking   Booking[]

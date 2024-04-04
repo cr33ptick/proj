@@ -46,6 +46,17 @@ export const verify = async (data: Verify) => {
   });
 };
 
+export const available = async (data: Verify) => {
+  await db.user.update({
+    where: {
+      id: data.id,
+    },
+    data: {
+      available: data.verified,
+    },
+  });
+};
+
 export const book = async (data: Book) => {
   const booking = await db.booking.create({
     data: {
