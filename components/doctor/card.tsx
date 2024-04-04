@@ -1,9 +1,9 @@
 "use client";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Icons } from "@/components/Icons";
 import Link from "next/link";
 import { Role } from "@prisma/client";
+import { BriefcaseMedical, NotebookPen, Verified } from "lucide-react";
 
 interface Card {
   data: {
@@ -14,6 +14,7 @@ interface Card {
     password: string;
     role: Role;
     verified: boolean;
+    available: boolean;
     regNo: string;
     specilize: string;
   };
@@ -36,7 +37,7 @@ export const DocterCard: React.FC<Card> = ({ data, userId }) => {
         </div>
         <div className="flex justify-between gap-4 ">
           <div className="flex gap-4">
-            <p className="font-bold text-md ">Specialize: </p>
+            <NotebookPen />
             <p className="font-bold text-md text-primary">{data.specilize}</p>
           </div>
           <div className="flex gap-4">
@@ -44,9 +45,20 @@ export const DocterCard: React.FC<Card> = ({ data, userId }) => {
             <p className="font-bold text-md text-primary">{data.regNo}</p>
           </div>
         </div>
-        <p className="font-bold text-md text-primary">
-          {data.verified ? "Verified" : "Not Verified"}{" "}
-        </p>
+        <div className="flex justify-between gap-4 ">
+          <div className="flex gap-4 items-center">
+            <Verified />
+            <p className="font-bold text-md text-primary">
+              {data.verified ? "Verified" : "Not Verified"}{" "}
+            </p>
+          </div>
+          <div className="flex gap-4 items-center">
+            <BriefcaseMedical />
+            <p className="font-bold text-md text-primary">
+              {data.available ? "Available" : "Not Available"}
+            </p>
+          </div>
+        </div>
         <Link
           href={`/${userId}/book?doctorId=${data.id}`}
           className={buttonVariants({
