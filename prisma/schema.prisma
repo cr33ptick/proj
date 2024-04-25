@@ -27,6 +27,8 @@ model Booking {
   User     User?   @relation(fields: [userId], references: [id])
   userId   String?
   issue    String
+  date     String
+  time     String  @default("")
 }
 
 enum Role {

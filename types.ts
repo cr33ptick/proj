@@ -26,6 +26,8 @@ export interface Book {
   userId: string;
   doctorId: string;
   issue: string;
+  time: string;
+  date: string;
   phoneNo: string;
 }
 export interface MpesaRequestBody {

@@ -68,6 +68,8 @@ export const book = async (data: Book) => {
           doctorId: data.doctorId,
           issue: data.issue,
           userId: data.userId,
+          date: data.date,
+          time: data.time,
         },
       }),
     ]);

@@ -22,6 +22,8 @@ interface Card {
     doctorId: string;
     userId: string | null;
     issue: string;
+    time: string;
+    date: string;
   };
 }
 
@@ -29,21 +31,27 @@ export const PatientCard: React.FC<Card> = ({ data }) => {
   return (
     <div className="bg-white group cursor-pointer rounded-xl border p-4 space-y-4 ">
       <div className="flex flex-col gap-6 ">
-        <div className="flex gap-4 justify-start items-center">
-          <Button className="rounded-full h-12 w-12 aspect-square bg-slate-400">
-            <Icons.user className="h-6 w-6 text-zinc-900" />
-          </Button>
-          <div className="flex items-center justify-start gap-2 p-2">
-            <div className="flex flex-col space-y-0.5 leading-none">
-              <p className="font-bold text-md text-black">
-                {data.User?.username}
-              </p>
+        <div className="flex justify-between items-center">
+          <div className="flex gap-4 items-center">
+            <Button className="rounded-full h-12 w-12 aspect-square bg-slate-400">
+              <Icons.user className="h-6 w-6 text-zinc-900" />
+            </Button>
+            <div className="flex items-center justify-start gap-2 p-2">
+              <div className="flex flex-col space-y-0.5 leading-none">
+                <p className="font-bold text-md text-black">
+                  {data.User?.username}
+                </p>
+              </div>
             </div>
+          </div>
+          <div className="flex flex-col gap-4 border-2 rounded-md p-2">
+            <p className="font-bold text-lg text-primary"> schedule time</p>
+            <p className="font-bold text-md text-black">{`${data.date}: ${data.time}`}</p>
           </div>
         </div>
         <div className="flex flex-col gap-4 ">
-          <div className="flex gap-4">
-            <p className="font-bold text-lg text-black">Issue: </p>
+          <div className="flex gap-4 flex-col border-2 rounded-md p-2">
+            <p className="font-bold text-lg text-primary">Issue: </p>
             <p className="font-bold text-md text-black">{data.issue}</p>
           </div>
         </div>
