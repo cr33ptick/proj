@@ -63,6 +63,11 @@ export const Form: React.FC<Props> = ({ data }) => {
     //   setLoading(false);
     // }
   }
+
+  const currentTime =
+    new Date().getHours().toString().padStart(2, "0") +
+    ":" +
+    new Date().getMinutes().toString().padStart(2, "0");
   return (
     <form
       onSubmit={handleSubmit}
@@ -117,6 +122,7 @@ export const Form: React.FC<Props> = ({ data }) => {
         <div className="flex relative ">
           <input
             type="date"
+            min={`${new Date().toLocaleDateString("fr-ca")}`}
             required
             id="date"
             value={date}
@@ -135,6 +141,7 @@ export const Form: React.FC<Props> = ({ data }) => {
         </label>
         <input
           type="time"
+          min={currentTime}
           id="time"
           value={time}
           placeholder="Time"

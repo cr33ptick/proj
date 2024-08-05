@@ -111,6 +111,7 @@ export function Form() {
                   value={username}
                   onChange={handleInputChange}
                   placeholder="username"
+                  required
                 />
               </div>
               <div className="space-y-1">
@@ -121,6 +122,7 @@ export function Form() {
                   onChange={handleInputChange}
                   type="email"
                   placeholder="email"
+                  required
                 />
               </div>
               <div className="space-y-1">
@@ -131,12 +133,15 @@ export function Form() {
                   onChange={handleInputChange}
                   type="password"
                   placeholder="password"
+                  required
                 />
               </div>
               <div className="space-y-1">
                 <Label htmlFor="phoneNo">Phone Number</Label>
                 <Input
                   id="phoneNo"
+                  type="number"
+                  required
                   value={phoneNo}
                   onChange={handleInputChange}
                   placeholder="phone Number"
@@ -163,6 +168,7 @@ export function Form() {
                   value={username2}
                   onChange={handleInputChange2}
                   placeholder="username"
+                  required
                 />
               </div>
               <div className="space-y-1">
@@ -172,6 +178,7 @@ export function Form() {
                   value={email2}
                   onChange={handleInputChange2}
                   type="email"
+                  required
                   placeholder="email"
                 />
               </div>
@@ -182,6 +189,7 @@ export function Form() {
                   value={password2}
                   onChange={handleInputChange2}
                   type="password"
+                  required
                   placeholder="password"
                 />
               </div>
@@ -191,6 +199,8 @@ export function Form() {
                   id="phoneNo2"
                   value={phoneNo2}
                   onChange={handleInputChange2}
+                  required
+                  type="number"
                   placeholder="phone Number"
                 />
               </div>
@@ -201,6 +211,7 @@ export function Form() {
                   value={regNo}
                   onChange={handleInputChange2}
                   placeholder="Registreation Number"
+                  required
                 />
               </div>
               <div className="space-y-1">
@@ -210,6 +221,7 @@ export function Form() {
                   value={specilize}
                   onChange={handleInputChange2}
                   placeholder="specialize"
+                  required
                 />
               </div>
             </CardContent>
