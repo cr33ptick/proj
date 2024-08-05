@@ -14,6 +14,7 @@ export default async function Page({ params, searchParams }: Props) {
   const data = {
     doctorId: searchParams?.doctorId as string,
     userId: user.id,
+    phoneNo: user.phoneNo,
   };
   return (
     <MaxWidthWrapper>

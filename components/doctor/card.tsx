@@ -1,5 +1,5 @@
 "use client";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/Icons";
 import Link from "next/link";
 import { Role } from "@prisma/client";
@@ -59,14 +59,11 @@ export const DocterCard: React.FC<Card> = ({ data, userId }) => {
             </p>
           </div>
         </div>
-        <Link
-          href={`/${userId}/book?doctorId=${data.id}`}
-          className={buttonVariants({
-            className: "text-md",
-          })}
-        >
-          Book appointement
-        </Link>
+        <Button disabled={!data.available}>
+          <Link href={`/${userId}/book?doctorId=${data.id}`}>
+            Book appointement
+          </Link>
+        </Button>
       </div>
     </div>
   );

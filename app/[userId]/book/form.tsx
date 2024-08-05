@@ -1,9 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { DollarSign, User } from "lucide-react";
 import { ChangeEvent, FormEvent, useState } from "react";
 import toast from "react-hot-toast";
-import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useServerAction } from "@/hooks/use-server-actions";
 import { book } from "@/actions";
@@ -12,13 +10,14 @@ type Props = {
   data: {
     doctorId: string;
     userId: string;
+    phoneNo: string;
   };
 };
 
 export const Form: React.FC<Props> = ({ data }) => {
   const [formData, setFormData] = useState({
     issue: "",
-    phoneNo: "",
+    phoneNo: data.phoneNo,
     date: "",
     time: "",
   });
