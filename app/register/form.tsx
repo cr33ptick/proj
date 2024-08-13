@@ -210,17 +210,17 @@ export function Form() {
                   id="regNo"
                   value={regNo}
                   onChange={handleInputChange2}
-                  placeholder="Registreation Number"
+                  placeholder="Registration Number"
                   required
                 />
               </div>
               <div className="space-y-1">
-                <Label htmlFor="specilize">Specilize</Label>
+                <Label htmlFor="specilize">Speciality</Label>
                 <Input
                   id="specilize"
                   value={specilize}
                   onChange={handleInputChange2}
-                  placeholder="specialize"
+                  placeholder="speciality"
                   required
                 />
               </div>
